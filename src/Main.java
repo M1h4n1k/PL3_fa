@@ -53,6 +53,36 @@ public class Main {
         System.out.println("Not found");
     }
 
+    public static void testBubbleSort() {
+        int[] arr = new int[10];
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = (int)(Math.random() * 200 - 100);
+        }
+        // do I have to change the name of the algorithm? Will the autotests be able to parse the line?
+        System.out.println("Data set before bubble sorting:");
+        for (int i : arr) {
+            System.out.print(i + " ");
+        }
+        System.out.println();
+
+        for (int i = 0; i < arr.length; i++){
+            for (int j = 0; j < arr.length; j++){
+                if (arr[i] < arr[j]){
+                    int temp = arr[i];
+                    arr[i] = arr[j];
+                    arr[j] = temp;
+                }
+            }
+        }
+
+        // same question
+        System.out.println("Data set after bubble sorting:");
+        for (int i : arr) {
+            System.out.print(i + " ");
+        }
+
+    }
+
 
     public static String mainLogic(){
         menu();
@@ -61,6 +91,7 @@ public class Main {
         switch (choice) {
             case "1" -> testLinearSearch();
             case "2" -> testBinarySearch();
+            case "3" -> testBubbleSort();
             case "q", "Q" -> System.out.println("Bye!");
             default -> System.out.println("Invalid choice!");
         }

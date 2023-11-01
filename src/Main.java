@@ -40,98 +40,25 @@ public class Main {
     }
 
     private static void testBubbleSort() {
-        int[] arr = new int[10];
-        for (int i = 0; i < arr.length; i++) {
-            arr[i] = (int)(Math.random() * 200 - 100);
-        }
-        // do I have to change the name of the algorithm? Will the autotests be able to parse the line?
+        BubbleSorter bs = new BubbleSorter();
+        System.out.println();
         System.out.println("Data set before bubble sorting:");
-        for (int i : arr) {
-            System.out.print(i + " ");
-        }
+        bs.printArray();
         System.out.println();
-        System.out.println();
-
-        for (int i = 0; i < arr.length; i++){
-            for (int j = 0; j < arr.length; j++){
-                if (arr[i] < arr[j]){
-                    int temp = arr[i];
-                    arr[i] = arr[j];
-                    arr[j] = temp;
-                }
-            }
-        }
-
-        // same question
+        bs.sort();
         System.out.println("Data set after bubble sorting:");
-        for (int i : arr) {
-            System.out.print(i + " ");
-        }
-        System.out.println();
-
-    }
-
-    private static int[] merge(int[] arr, int[] brr){
-        int[] crr = new int[arr.length + brr.length];
-        int i = 0, j = 0, k = 0;
-        while (i < arr.length || j < brr.length){
-            if (j == brr.length){
-                crr[k] = arr[i];
-                i++;
-            } else if (i == arr.length) {
-                crr[k] = brr[j];
-                j++;
-            } else if (arr[i] < brr[j]){
-                crr[k] = arr[i];
-                i++;
-            } else {
-                crr[k] = brr[j];
-                j++;
-            }
-            k++;
-        }
-        return crr;
-    }
-
-    public static int[] mergeSort(int[] arr) {
-        if (arr.length <= 1) {
-            return arr;
-        }
-        int[] a = new int[arr.length / 2];
-        int[] b = new int[arr.length - a.length];
-        System.arraycopy(arr, 0, a, 0, a.length);
-        System.arraycopy(arr, arr.length / 2, b, 0, b.length);
-
-        a = mergeSort(a);
-        b = mergeSort(b);
-        arr = merge(a, b);
-        return arr;
-
+        bs.printArray();
     }
 
     private static void testMergeSort() {
-        int[] arr = new int[10];
-        for (int i = 0; i < arr.length; i++) {
-            arr[i] = (int)(Math.random() * 200 - 100);
-        }
-        // do I have to change the name of the algorithm? Will the autotests be able to parse the line?
+        MergeSorter ms = new MergeSorter();
+        System.out.println();
         System.out.println("Data set before mergesort:");
-        for (int i : arr) {
-            System.out.print(i + " ");
-        }
+        ms.printArray();
         System.out.println();
-        System.out.println();
-
-        arr = mergeSort(arr);
-
+        ms.sort();
         System.out.println("Data set after mergesort:");
-        for (int i : arr) {
-            System.out.print(i + " ");
-        }
-        System.out.println();
-
-
-
+        ms.printArray();
     }
 
 

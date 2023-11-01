@@ -1,4 +1,10 @@
+package sorters;
+
 public class MergeSorter extends Sorter {
+    public MergeSorter(){
+        name = "mergesort";
+    }
+
     private static int[] merge(int[] arr, int[] brr){
         int[] crr = new int[arr.length + brr.length];
         int i = 0, j = 0, k = 0;

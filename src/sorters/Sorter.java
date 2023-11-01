@@ -1,5 +1,8 @@
+package sorters;
+
 abstract public class Sorter {
     protected int[] arr;
+    protected String name = "sorter name";
 
     public Sorter(){
         arr = new int[10];
@@ -15,6 +18,16 @@ abstract public class Sorter {
             System.out.print(i + " ");
         }
         System.out.println();
+    }
+
+    public void testSorter() {
+        System.out.println();
+        System.out.println("Data set before " + name + " :");
+        printArray();
+        System.out.println();
+        sort();
+        System.out.println("Data set after " + name + " :");
+        printArray();
     }
 
 }

@@ -17,7 +17,7 @@ public class Main {
         System.out.println("Not found");
     }
 
-    public static void testBinarySearch() {
+    private static void testBinarySearch() {
         System.out.print("In the list are values 0, ..., 9; which value would you like to search with linear search? ");
         Scanner sc = new Scanner(System.in);
         int key = sc.nextInt();
@@ -39,7 +39,7 @@ public class Main {
         System.out.println("Not found");
     }
 
-    public static void testBubbleSort() {
+    private static void testBubbleSort() {
         int[] arr = new int[10];
         for (int i = 0; i < arr.length; i++) {
             arr[i] = (int)(Math.random() * 200 - 100);
@@ -49,6 +49,7 @@ public class Main {
         for (int i : arr) {
             System.out.print(i + " ");
         }
+        System.out.println();
         System.out.println();
 
         for (int i = 0; i < arr.length; i++){
@@ -66,21 +67,71 @@ public class Main {
         for (int i : arr) {
             System.out.print(i + " ");
         }
+        System.out.println();
 
     }
 
-    public static String mainLogic(){
-        menu();
-        Scanner sc = new Scanner(System.in);
-        String choice = sc.nextLine();
-        switch (choice) {
-            case "1" -> testLinearSearch();
-            case "2" -> testBinarySearch();
-            case "3" -> testBubbleSort();
-            case "q", "Q" -> System.out.println("Bye!");
-            default -> System.out.println("Invalid choice!");
+    private static int[] merge(int[] arr, int[] brr){
+        int[] crr = new int[arr.length + brr.length];
+        int i = 0, j = 0, k = 0;
+        while (i < arr.length || j < brr.length){
+            if (j == brr.length){
+                crr[k] = arr[i];
+                i++;
+            } else if (i == arr.length) {
+                crr[k] = brr[j];
+                j++;
+            } else if (arr[i] < brr[j]){
+                crr[k] = arr[i];
+                i++;
+            } else {
+                crr[k] = brr[j];
+                j++;
+            }
+            k++;
         }
-        return choice;
+        return crr;
+    }
+
+    public static int[] mergeSort(int[] arr) {
+        if (arr.length <= 1) {
+            return arr;
+        }
+        int[] a = new int[arr.length / 2];
+        int[] b = new int[arr.length - a.length];
+        System.arraycopy(arr, 0, a, 0, a.length);
+        System.arraycopy(arr, arr.length / 2, b, 0, b.length);
+
+        a = mergeSort(a);
+        b = mergeSort(b);
+        arr = merge(a, b);
+        return arr;
+
+    }
+
+    private static void testMergeSort() {
+        int[] arr = new int[10];
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = (int)(Math.random() * 200 - 100);
+        }
+        // do I have to change the name of the algorithm? Will the autotests be able to parse the line?
+        System.out.println("Data set before mergesort:");
+        for (int i : arr) {
+            System.out.print(i + " ");
+        }
+        System.out.println();
+        System.out.println();
+
+        arr = mergeSort(arr);
+
+        System.out.println("Data set after mergesort:");
+        for (int i : arr) {
+            System.out.print(i + " ");
+        }
+        System.out.println();
+
+
+
     }
 
 
@@ -97,6 +148,22 @@ public class Main {
         System.out.println();
         System.out.print("Your choice: ");
     }
+
+    public static String mainLogic(){
+        menu();
+        Scanner sc = new Scanner(System.in);
+        String choice = sc.nextLine();
+        switch (choice) {
+            case "1" -> testLinearSearch();
+            case "2" -> testBinarySearch();
+            case "3" -> testBubbleSort();
+            case "4" -> testMergeSort();
+            case "q", "Q" -> System.out.println("Bye!");
+            default -> System.out.println("Invalid choice!");
+        }
+        return choice;
+    }
+
 
     public static void main(String[] args) {
         while (!Objects.equals(mainLogic(), "q")) {

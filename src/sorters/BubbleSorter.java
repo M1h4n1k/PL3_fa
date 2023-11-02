@@ -1,7 +1,8 @@
 package sorters;
 
 public class BubbleSorter extends Sorter {
-    public BubbleSorter(){
+    public BubbleSorter(int n){
+        super(n);
         name = "bubble sorting";
     }
 
@@ -12,6 +13,7 @@ public class BubbleSorter extends Sorter {
                     int temp = arr[i];
                     arr[i] = arr[j];
                     arr[j] = temp;
+                    comparisons++;
                 }
             }
         }

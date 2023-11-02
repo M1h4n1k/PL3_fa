@@ -2,6 +2,7 @@ import searchers.BinarySearcher;
 import searchers.LinearSearcher;
 import sorters.BubbleSorter;
 import sorters.MergeSorter;
+import sorters.QSorter;
 
 import java.util.Objects;
 import java.util.Scanner;
@@ -29,14 +30,14 @@ public class Main {
         switch (choice) {
             case "1" -> new LinearSearcher().testSearcher();
             case "2" -> new BinarySearcher().testSearcher();
-            case "3" -> new BubbleSorter().testSorter();
-            case "4" -> new MergeSorter().testSorter();
+            case "3" -> new BubbleSorter(10).testSorter();
+            case "4" -> new MergeSorter(10).testSorter();
+            case "5" -> new PerformanceTester().printResults();
             case "q", "Q" -> System.out.println("Bye!");
             default -> System.out.println("Invalid choice!");
         }
         return choice;
     }
-
 
     public static void main(String[] args) {
         while (!Objects.equals(mainLogic(), "q")) {

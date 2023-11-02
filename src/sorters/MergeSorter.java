@@ -1,33 +1,35 @@
 package sorters;
 
 public class MergeSorter extends Sorter {
-    public MergeSorter(){
+    public MergeSorter(int n){
+        super(n);
         name = "mergesort";
     }
 
-    private static int[] merge(int[] arr, int[] brr){
-        int[] crr = new int[arr.length + brr.length];
+    private int[] merge(int[] a, int[] b){
+        int[] crr = new int[a.length + b.length];
         int i = 0, j = 0, k = 0;
-        while (i < arr.length || j < brr.length){
-            if (j == brr.length){
-                crr[k] = arr[i];
+        while (i < a.length || j < b.length){
+            if (j == b.length){
+                crr[k] = a[i];
                 i++;
-            } else if (i == arr.length) {
-                crr[k] = brr[j];
+            } else if (i == a.length) {
+                crr[k] = b[j];
                 j++;
-            } else if (arr[i] < brr[j]){
-                crr[k] = arr[i];
+            } else if (a[i] < b[j]){
+                crr[k] = a[i];
                 i++;
             } else {
-                crr[k] = brr[j];
+                crr[k] = b[j];
                 j++;
             }
+            comparisons++;
             k++;
         }
         return crr;
     }
 
-    public static int[] mergeSort(int[] _arr) {
+    public int[] mergeSort(int[] _arr) {
         if (_arr.length <= 1) {
             return _arr;
         }
